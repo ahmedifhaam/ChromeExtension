@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      button {
+        height: 30px;
+       
+        outline: none;
+      }
+	  
+	  
+	  
+
+		td,th {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2;}
+
+		tr:hover {background-color: #ddd;}
+
+		th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: left;
+		  background-color: #4CAF50;
+		  color: white;
+		}
+    </style>
+  </head>
+  <body>
+  <div style="width:100%" >
+	<button id="changeColor" style="display:none"></button>
+	<!--<button id="testbtn">Test</button>-->
+    <script src="popup.js"></script>
+	<div id="issue_title">Title:</div>
+	<div id="tp" style="width:100%">
+	Youtrack workitems will be populated here
+	</div>
+	<div id="redmineinfo">
+	</div>	
+	<div id="redminetimeentries"></div>
+  </div>
+    
+  </body>
+</html>
