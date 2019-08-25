@@ -4,11 +4,10 @@
 
 'use strict';
 
-let changeColor = document.getElementById('changeColor');
+
 let cont = document.getElementById('tp');
-let testbtn = document.getElementById('testbtn');
 let issue_title = document.getElementById('issue_title');
-let REDMINE_API_KEY = "7a6d5d1cdac7ebc51724b011d9fda72648db356e";
+let REDMINE_API_KEY = "";
 let user = "";
 let redmineuser = "";
 let trackers = "";
@@ -21,20 +20,24 @@ chrome.storage.sync.get('color', function(data) {
   changeColor.setAttribute('value', data.color);
 });
 
+
+function renderErrorOnTopBar(errormessage){
+	var ulelement = $("<li></li>").text(errormessage);
+	ulelement.fadeOut(8000);
+	$("#error_top_bar").find("ul").append(ulelement);	
+}
+
 chrome.storage.sync.get('apikey',function(data){
 	REDMINE_API_KEY = data.apikey;
-	if(REDMINE_API_KEY===undefined) alert("Without the API key redmine entries won't be shown");
+	if(REDMINE_API_KEY===undefined) renderErrorOnTopBar("Without the API key redmine entries won't be shown");
 });
 
 chrome.storage.sync.get('maps',function(data){
 		mappings = data.maps;
-		console.log(mappings);
+		if(mappings ===undefined) renderErrorOnTopBar("Mappings not found ");
 });
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      /* chrome.tabs.executeScript(
-          tabs[0].id,
-          {code: 'document.body.style.backgroundColor = "' + color + '";'}); */
 		  issueId =  getIssueIdFromUrl(tabs[0].url);
 		  document.getElementById('issue_title').innerHTML = "<h3 style='display:inline'>"+issueId+"</h2>";
 		  GetAllTrackers(function(){
@@ -44,8 +47,6 @@ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 				getredmineissueIdforYouTrackissue(issueId);
 			});
 		  });
-		  
-		  
 });
 
 function getIssueIdFromUrl(url){
@@ -59,33 +60,6 @@ function getIssueIdFromUrl(url){
 	}
 	return issueID;
 }
-
- changeColor.onclick = function(element) {
-    let color = element.target.value;
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-      chrome.tabs.executeScript(
-          tabs[0].id,
-          {code: 'document.body.style.backgroundColor = "' + color + '";'});
-    });
-  };
-  
-  /*testbtn.onclick = function update(){
-	  var xhttp = new XMLHttpRequest();
-	  xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-		  document.getElementById('tp').innerHTML =
-			"compatible computer. Text messages may be sent over a cellular network, or may also be sent via an Internet connection."+
-			"The term originally referred to messages sent using the Short Message Service (SMS). It has grown beyond alphanumeric text to include multimedia messages (known as MMS) containing digital images, videos, and sound content, as well as ideograms known as emoji (happy faces, sad faces, and other icons)."+
-"As of 2017, text messages are used by youth and adults for personal, family, business and social purposes. Governmental and non-governmental organizations use text messaging for communication between colleagues. In the 2010s, the sending of short informal messages has become an accepted part of many cultures, as happened earlier with emailing.[1] This makes texting a quick and easy way to communicate with friends, family and colleagues, including in contexts where a call would be impolite or inappropriate (e.g., calling very late at night or when one knows the other person is busy with family or work activities). Like e-mail and voicemail, and unlike calls (in which the caller hopes to speak directly with the recipient), texting does not require the caller and recipient to both be free at the same moment; this permits communication even between busy individuals. Text messages can also be used to interact with automated systems, for example, to order products or services from e-commerce websites, or to participate in online contests. Advertisers and service providers use direct text marketing to send messages to mobile users about promotions, payment due dates, and other notifications instead of using postal mail, email, or voicemail.";
-		  
-		}
-	  };
-	  xhttp.open("GET", "http://dev-app.us.kronos.com:81/rest/issue/LT-1120/timetracking/workitem", true);
-	  xhttp.send();
-
-  }*/
-  
-  
   //get data from you track
   function getWorkItemsForIssue(issueId){
 	var reqUrl = "http://dev-app.us.kronos.com:81/rest/issue/"+issueId+"/timetracking/workitem";

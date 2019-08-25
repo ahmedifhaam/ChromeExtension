@@ -7,11 +7,7 @@
        
         outline: none;
       }
-	  
-	  
-	  
-
-		td,th {
+	  	td,th {
 		  border: 1px solid #ddd;
 		  padding: 8px;
 		}
@@ -30,10 +26,16 @@
     </style>
   </head>
   <body>
-  <div style="width:100%" >
-	<button id="changeColor" style="display:none"></button>
-	<!--<button id="testbtn">Test</button>-->
-    <script src="popup.js"></script>
+  <div style="width: 600px;" >
+	<script src="libs/jquery-3.4.1.min.js"></script>
+	<script src="popup.js"></script>
+
+	<div id="error_top_bar">
+		<ul>
+
+		</ul>
+	</div>
+	<button id="btnTest">test</button>
 	<div id="issue_title">Title:</div>
 	<div id="tp" style="width:100%">
 	Youtrack workitems will be populated here

@@ -2,28 +2,17 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-let page = document.getElementById('buttonDiv');
-const kButtonColors = ['#3aa757', '#e8453c', '#f9bb2d', '#4688f1'];
-let updateBtn = document.getElementById('UPDATE_API_KEY');
-let api_key_txt = document.getElementById('TXT_API_KEY');
+let page = document.getElementById('divApiConfig');
+let updateBtn = document.getElementById('btnUpdateApiKey');
+let api_key_txt = document.getElementById('txtApiKey');
 let mappinsDV = document.getElementById('mappings');
+let btnReset = document.getElementById('btnUpdate');
 let REDMINE_API_KEY = "";
 let trackers = "";
 let projects = "";
 var youtrack_workitemtypes = new Set();
 
 let mappings = {};
-
-/* chrome.storage.sync.set({maps:''},function(){
-	alert("Cleared");
-}); */
-
-/* chrome.storage.sync.clear(function() {
-    var error = chrome.runtime.lastError;
-    if (error) {
-        console.error(error);
-    }
-}); */
 
 chrome.storage.sync.get('apikey',function(data){
 	REDMINE_API_KEY = data.apikey;
@@ -47,12 +36,21 @@ chrome.storage.sync.get('maps',function(data){
 
 
 function constructOptions() {
-	updateBtn.addEventListener('click',function(){
+	$('#btnUpdateApiKey',function(){
 		var key = api_key_txt.value;
 		chrome.storage.sync.set({apikey:key},function(){
 			alert("Update API KEY as "+key);
 		})
 	});
+
+	$('#btnReset').click(function(){
+		chrome.storage.sync.clear(function() {
+			var error = chrome.runtime.lastError;
+			if (error) {
+				console.error(error);
+			}
+		});
+	})
 	
   /* for (let item of kButtonColors) {
     let button = document.createElement('button');

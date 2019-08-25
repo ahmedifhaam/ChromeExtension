@@ -4,7 +4,7 @@
         "description": "Build an Extension!",
 	"permissions":["activeTab","declarativeContent","storage","tabs","https://track.zone24x7.lk/","http://dev-app.us.kronos.com:81/"],
 	"background":{
-		"scripts": ["background.js"],
+		"scripts": ["libs/jquery-3.4.1.min.js","background.js"],
 		"persistent":false
 	},
 	"options_page": "options.html",
