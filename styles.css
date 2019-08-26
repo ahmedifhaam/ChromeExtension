@@ -1,0 +1,66 @@
+body {
+    font-family: 'Open Sans', Roboto, Calibri, 'sans-serif';
+    font-size: 12px;
+    width: 600px;
+}
+
+button {
+    height: 30px;
+    outline: none;
+}
+
+td,
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#issue_title {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#redmineinfo {
+    padding: 10px;
+}
+
+#tp table,
+#redminetimeentries table {
+    border: 1px solid transparent;
+    width: 100%;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+button {
+    height: 30px;
+    outline: none;
+}
+
+tr {
+    border-bottom: 1px solid #113388;
+}
+
+td,
+th {
+    border: 1px solid transparent;
+    padding: 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #bbe4ff;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #138bbd;
+    color: white;
+    font-weight: 500;
+}

@@ -83,7 +83,7 @@ function getIssueIdFromUrl(url){
   function renderWorkItems(workitems){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
-	  var html = "<p><table>";
+	  var html = "<p><table cellspacing=0; cellpadding=0;>";
 	  html+="<tr><th >Date</th><th>Hours</th><th>Tracker</th><th>Sync</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
@@ -202,7 +202,7 @@ function getIssueIdFromUrl(url){
   
   
   function renderredmineTimeEntries(redmineTimeEntries){
-	var html = "<table><tr><th>User</th><th>Hours</th><th>Date</th><th>Tracker</th><tr>";
+	var html = "<table cellspacing=0; cellpadding=0;><tr><th>User</th><th>Hours</th><th>Date</th><th>Tracker</th><tr>";
 	for(var timeEntry of redmineTimeEntries.time_entries){
 		html+="<tr><td>"+timeEntry.user.name+"</td>";
 		html+="<td>"+timeEntry.hours+" h</td>";
