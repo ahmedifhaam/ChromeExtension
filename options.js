@@ -12,15 +12,23 @@ let trackers = "";
 let projects = "";
 var youtrack_workitemtypes = new Set();
 
-let mappings = {};
+let mappings = getDefaultMapping();
+
+function getDefaultMapping(){
+	return {'Dev - Testing': 9,'Development': 9,'Documentation' : 20, 'QA - Testing': 10,'Research' : 22};	
+}
+
+function update(){
+	GetAllRedmineTrackers();
+	getAllYouTrackProjects();
+}
 
 chrome.storage.sync.get('apikey',function(data){
 	REDMINE_API_KEY = data.apikey;
 	if(REDMINE_API_KEY===undefined){
 		alert("Please update your Redmine API key and retry");
 	}else{
-		GetAllRedmineTrackers();
-		getAllYouTrackProjects();
+		update();
 	}
 	
 	
@@ -29,17 +37,21 @@ chrome.storage.sync.get('apikey',function(data){
 chrome.storage.sync.get('maps',function(data){
 		mappings = data.maps;
 		if(mappings===undefined){
-			mappings ={};
+			mappings =getDefaultMapping();
 		}
+		syncMappings();
 		console.log(mappings);
 });
 
 
+renderMapppings();
+
 function constructOptions() {
-	$('#btnUpdateApiKey',function(){
+	$('#btnUpdateApiKey').click(function(){
 		var key = api_key_txt.value;
 		chrome.storage.sync.set({apikey:key},function(){
 			alert("Update API KEY as "+key);
+			update();
 		})
 	});
 
@@ -52,16 +64,6 @@ function constructOptions() {
 		});
 	})
 	
-  /* for (let item of kButtonColors) {
-    let button = document.createElement('button');
-    button.style.backgroundColor = item;
-    button.addEventListener('click', function() {
-      chrome.storage.sync.set({color: item}, function() {
-        console.log('color is ' + item);
-      })
-    });
-    page.appendChild(button);
-  } */
 }
 constructOptions();
 
@@ -98,6 +100,10 @@ function addnewMapAndSync(){
 	mappings[document.getElementById('youtrackitem').value] =  document.getElementById('redmineitem').value;
 	//mappings['test'] = document.getElementById('redmineitem').value;
 	console.log(mappings);
+	syncMappings();
+}
+
+function syncMappings(){
 	chrome.storage.sync.set({maps: mappings},function(){
 		console.log("Synced Successfully");
 		
@@ -128,7 +134,9 @@ function GetAllRedmineTrackers(){
   
   function getTrackersAsOptions(){
 	  var html="";
-	  
+	  if(trackers===undefined || trackers.time_entry_activities===undefined){
+		return "";
+		}
 	  for(var tracker of trackers.time_entry_activities){
 		  html+="<option value='"+tracker.id+"'>"+tracker.name+"</option>";
 	  }
@@ -138,6 +146,9 @@ function GetAllRedmineTrackers(){
   
   function getTrackersAsMap(){
 	  var map = {};
+	  if(trackers===undefined || trackers.time_entry_activities===undefined){
+		  return map;
+	  }
 	  for(var tracker of trackers.time_entry_activities){
 		  map[tracker.id] = tracker.name;
 	  }
