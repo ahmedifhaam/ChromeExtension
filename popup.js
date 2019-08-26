@@ -129,8 +129,6 @@ function getIssueIdFromUrl(url){
 			  var btnBodyObj = JSON.parse(decodeURIComponent(btnbody));
 			  btnBodyObj.time_entry.activity_id = parseInt(this.value);
 			  btnup.setAttribute('btnbody',encodeURIComponent(JSON.stringify(btnBodyObj)));
-			  
-			alert();
 		  });
 	  }
 	  
@@ -290,7 +288,7 @@ function getIssueIdFromUrl(url){
 		 
 		if (this.readyState == 4 && this.status == 201) {
 			//alert(this.responseText);
-			alert("Updated Successfully");
+			renderErrorOnTopBar("Updated successfully");
 			getredmineissueIdforYouTrackissue(issueId);
 		}
 	  };

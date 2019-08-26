@@ -23,16 +23,20 @@ function update(){
 	getAllYouTrackProjects();
 }
 
-chrome.storage.sync.get('apikey',function(data){
-	REDMINE_API_KEY = data.apikey;
-	if(REDMINE_API_KEY===undefined){
-		alert("Please update your Redmine API key and retry");
-	}else{
-		update();
-	}
-	
-	
-});
+
+function getAPIKey(){
+	chrome.storage.sync.get('apikey',function(data){
+		REDMINE_API_KEY = data.apikey;
+		if(REDMINE_API_KEY===undefined){
+			alert("Please update your Redmine API key and retry");
+		}else{
+			update();
+		}
+		
+		
+	});
+}
+getAPIKey();
 
 chrome.storage.sync.get('maps',function(data){
 		mappings = data.maps;
@@ -50,9 +54,10 @@ function constructOptions() {
 	$('#btnUpdateApiKey').click(function(){
 		var key = api_key_txt.value;
 		chrome.storage.sync.set({apikey:key},function(){
+			REDMINE_API_KEY=api_key_txt.value;
 			alert("Update API KEY as "+key);
-			update();
-		})
+			update();	
+		});
 	});
 
 	$('#btnReset').click(function(){
@@ -61,6 +66,7 @@ function constructOptions() {
 			if (error) {
 				console.error(error);
 			}
+			update();
 		});
 	})
 	
