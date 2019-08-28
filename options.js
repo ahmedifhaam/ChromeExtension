@@ -48,7 +48,7 @@ chrome.storage.sync.get('maps',function(data){
 });
 
 
-renderMapppings();
+//renderMapppings();
 
 function constructOptions() {
 	$('#btnUpdateApiKey').click(function(){
@@ -67,6 +67,7 @@ function constructOptions() {
 				console.error(error);
 			}
 			update();
+			location.reload(true);
 		});
 	})
 	

@@ -23,27 +23,45 @@ function renderErrorOnTopBar(errormessage){
 	$("#error_top_bar").find("ul").append(ulelement);	
 }
 
-chrome.storage.sync.get('apikey',function(data){
-	REDMINE_API_KEY = data.apikey;
-	if(REDMINE_API_KEY===undefined) renderErrorOnTopBar("RedMine entries will not be displayed without the API key.");
-});
+getAPIKey();
 
-chrome.storage.sync.get('maps',function(data){
+function getAPIKey(){
+	chrome.storage.sync.get('apikey',function(data){
+		REDMINE_API_KEY = data.apikey;
+		if(REDMINE_API_KEY===undefined) renderErrorOnTopBar("RedMine entries will not be displayed without the API key.");
+		getMaps();
+	});
+}
+
+
+function getMaps(){
+	chrome.storage.sync.get('maps',function(data){
 		mappings = data.maps;
 		if(mappings ===undefined) renderErrorOnTopBar("Mappings not found.");
-});
+		loaddata();
+	});
+}
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-		  issueId =  getIssueIdFromUrl(tabs[0].url);
-		  document.getElementById('issue_title').innerHTML = "<h3 style='display:inline'>"+issueId+"</h2>";
-		  GetAllTrackers(function(){
-			AssignUser(function(){
-				document.getElementById('issue_title').innerHTML+="<img style='width:32px;height:32px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'>";
-				getWorkItemsForIssue(issueId);
-				getredmineissueIdforYouTrackissue(issueId);
-			});
+
+function loaddata(){
+	//show loader
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		issueId =  getIssueIdFromUrl(tabs[0].url);
+		document.getElementById('issue_title').innerHTML = "<h3 style='display:inline'>"+issueId+"</h2>";
+		GetAllTrackers(function(){
+		  AssignUser(function(){
+			  document.getElementById('issue_title').innerHTML+="<img style='width:32px;height:32px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'>";
+			  getWorkItemsForIssue(issueId);
+			  getredmineissueIdforYouTrackissue(issueId);
 		  });
-});
+		});
+	});
+	//end loader
+}
+
+
+
+
 
 function getIssueIdFromUrl(url){
 	let hashindex = url.indexOf("#");
@@ -80,7 +98,7 @@ function getIssueIdFromUrl(url){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
 	  var html = "<p><table cellspacing=0; cellpadding=0;>";
-	  html+="<tr><th >Date</th><th>Hours</th><th>Tracker</th><th>Send to RedMine</th>";
+	  html+="<tr><th >Date</th><th>Hours</th><th>Work Item</th><th>Tracker</th><th>Send to RedMine</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
 		for(var   workitem of workitems){
@@ -93,13 +111,14 @@ function getIssueIdFromUrl(url){
 			if(workitem.worktype && workitem.worktype!=null) value = workitem.worktype['name'];
 			
 			var body = {time_entry:{}};
-			body.time_entry["spent_on"]=datelog.getFullYear()+"-"+("0"+datelog.getMonth()).slice(-2)+"-"+("0"+datelog.getDate()).slice(-2);
+			body.time_entry["spent_on"]=datelog.getFullYear()+"-"+("0"+(parseInt(datelog.getMonth())+1)).slice(-2)+"-"+("0"+datelog.getDate()).slice(-2);
 			body.time_entry["hours"] = Math.floor(workitem.duration / 60);
-			
+			body.time_entry["worktype"] = workitem.worktype.name;
 			body.time_entry["activity_id"] = parseInt(mappings[value]);
 			body.time_entry["comments"] = workitem.description;
 			html+= "<tr><td style='white-space:nowrap'>"+body.time_entry.spent_on
 			+"</td><td>"+body.time_entry.hours+" h</td>"
+			+"<td>"+body.time_entry.worktype+"</td>";
 			/* +"<td>"
 			+workitem.author['login']+"</td>"; */
 			totalhours+= body.time_entry.hours;
@@ -111,8 +130,9 @@ function getIssueIdFromUrl(url){
 		}
 		
 	  }
-	  html+="<tr><td colspan=2>Total</td><td colspan=2>"+totalhours+"h</td></tr></table></p>";
-	  
+	  //html+="<tr><td colspan=2>Total</td><td colspan=2>"+totalhours+"h</td></tr></table></p>";
+	  html+="</table></p>";
+	  $("#totalHours").text(totalhours+" h");
 	  document.getElementById('tp').innerHTML = html;
 	  for (var element of document.getElementsByClassName('btnsync')){
 		element.addEventListener('click',function(){
@@ -134,6 +154,8 @@ function getIssueIdFromUrl(url){
 	  
 	  
 }
+
+var youtrackcounter = 1;
   
   //since issue ids are not mapped logically search for the youtrack id in title of redmine issue
   //from that get the id of redmine issue
@@ -153,6 +175,13 @@ function getIssueIdFromUrl(url){
 			}else{
 				renderRedmineInfoError();
 			}
+			
+		}
+		if(this.readyState ==4 && this.status == 401){
+			
+				chrome.tabs.reload(function(){
+					console.log("Page Reloaded");
+				});
 			
 		}
 	  };
