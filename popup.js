@@ -86,6 +86,9 @@ function getIssueIdFromUrl(url){
 		  //document.getElementById('tp').innerHTML = 
 		  renderWorkItems(this.responseText);
 		}
+		if(this.readyState ==4 && this.status ==401){
+			console.log("Not Authenticated");
+		}
 	  };
 	
 	xhttp.open("GET",reqUrl);
@@ -179,9 +182,7 @@ var youtrackcounter = 1;
 		}
 		if(this.readyState ==4 && this.status == 401){
 			
-				chrome.tabs.reload(function(){
-					console.log("Page Reloaded");
-				});
+				console.log("Reload the page and try again...");
 			
 		}
 	  };
