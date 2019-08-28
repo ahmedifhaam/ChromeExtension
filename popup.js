@@ -216,7 +216,7 @@ var youtrackcounter = 1;
   //this function is to render the title part of the redmine informations
   function renderRedmineInfo(redmineinfo){
 	  redmineinfoId = redmineinfo.id;
-	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link icon'></i>"+redmineinfo.title + " ("+redmineinfo.id+")</a></br>";
+	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link icon'></i>"+"Open RedmineItem ("+redmineinfo.id+")</a></br>";
 	  document.getElementById('redmineinfo').innerHTML = html;
   }
   function renderRedmineInfoError(){
@@ -226,6 +226,7 @@ var youtrackcounter = 1;
   
   
   function renderredmineTimeEntries(redmineTimeEntries){
+	  var totalHours = 0;
 	var html = "<table cellspacing=0; cellpadding=0;><tr><th>User</th><th>Hours</th><th>Date</th><th>Tracker</th><tr>";
 	for(var timeEntry of redmineTimeEntries.time_entries){
 		html+="<tr><td>"+timeEntry.user.name+"</td>";
@@ -233,9 +234,10 @@ var youtrackcounter = 1;
 		html+="<td>"+timeEntry.spent_on+"</td>";
 		html+="<td>"+timeEntry.activity.name+"</td>";
 		html+="<tr>";
+		totalHours+=timeEntry.hours;
 	}
 	html+= "</tr></table>";
-	
+	$("#redmineTotalHours").text(totalHours+" h");
 	document.getElementById('redminetimeentries').innerHTML = html;
   }
   
