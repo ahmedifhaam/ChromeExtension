@@ -3,6 +3,7 @@
 
 <head>
 	<link href="styles.css" rel="stylesheet">
+	<link href="/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -11,17 +12,19 @@
 		<script src="popup.js"></script>
 
 		<div id="error_top_bar">
-			<ul>
+			<ul class="message">
 
 			</ul>
 		</div>
-		<!-- <button id="btnTest">test</button> -->
-		<div id="issue_title">Title:</div>
+		<div id="issue_title" class="padding">Title:</div>
+		<div class="padding title">Spent Time on YouTrack
+			<span class="pull-right">Total:<span id="totalHours" class="total">20h</span></span>
+		</div>
 		<div id="tp" style="width:100%">
-			Youtrack work items will be populated here
+			<span class="total">YouTrack work items will be populated here.</span>
 		</div>
-		<div id="redmineinfo">
-		</div>
+		<div class="padding title">Spent Time on RedMine</div>
+		<div id="redmineinfo" class="padding"></div>
 		<div id="redminetimeentries"></div>
 	</div>
 </body>

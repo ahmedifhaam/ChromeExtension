@@ -4,6 +4,14 @@ body {
     width: 600px;
 }
 
+.options-body{
+    margin: auto;
+    width: 70%;
+    padding: 25px;
+    font-family: 'Open Sans', Roboto, Calibri, 'sans-serif';
+    font-size: 12px;
+}
+
 button {
     height: 30px;
     outline: none;
@@ -15,13 +23,82 @@ th {
     padding: 8px;
 }
 
-#issue_title {
-    padding: 10px;
-    font-size: 16px;
+.padding-x{
+    padding: 0 10px;
 }
 
-#redmineinfo {
+.options-body div, .padding{
     padding: 10px;
+}
+
+.options-body #txtApiKey{
+    width: 80%;
+    line-height: 1.5em;
+    padding: 5px;
+}
+
+.options-body input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active   {
+    background-color:white !important;
+    background-image: none !important;
+    color: #000 !important;
+    box-shadow: 0 0 0 30px white inset !important;
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  
+}
+
+.options-body #btnUpdateApiKey, .options-body #updatebtn{
+    float: right;
+    height: 34px;
+    width: 100px;
+}
+
+.options-body button{
+    border: none;
+    background-color: #cdf0ff;
+    font-family: 'Open Sans', Roboto, Calibri, 'sans-serif';
+}
+
+.options-body button:hover{
+    background-color: #025b81;
+    color: white;
+    cursor: pointer;
+}
+
+.options-body select{
+    width: 30%;
+    padding: 5px;
+    margin: 0 5px;
+    line-height: 1.5em;
+    height: 34px;
+}
+
+#mappings table{
+    width: 100%;
+}
+
+#mappings table th, .subtitle{
+    background-color: white;
+    color: #138bbd;
+    font-size: 13px;
+}
+
+.title{
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+}
+
+.options-title{
+    font-size: 14px;
+    background: #138bbd;
+    color: white;
+    font-weight: 600;
+}
+#issue_title {
+    font-size: 16px;
 }
 
 #tp table,
@@ -36,7 +113,23 @@ button {
     height: 30px;
     outline: none;
 }
+.refresh{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
 
+.pull-right{
+    float: right;
+}
+.total{
+    padding: 0 10px;
+    color: #138bbd;
+}
+.icon{
+    padding-right: 7px;
+    cursor: pointer;
+}
 tr {
     border-bottom: 1px solid #113388;
 }
@@ -47,12 +140,11 @@ th {
     padding: 8px;
     border-bottom: 1px solid #ccc;
 }
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+.trackerselect{
+    border:none;
 }
 
-tr:hover {
+#tp tr:hover {
     background-color: #bbe4ff;
 }
 
@@ -63,4 +155,16 @@ th {
     background-color: #138bbd;
     color: white;
     font-weight: 500;
+}
+
+.message{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    font-size: 14px;
+    padding: 0;
+    font-weight: 600;
+    color: #065499;
+    list-style-type: none;
+    background-image: linear-gradient(to right, white , #cfe8ff, white);
 }

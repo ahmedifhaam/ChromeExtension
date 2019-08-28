@@ -28,7 +28,7 @@ function getAPIKey(){
 	chrome.storage.sync.get('apikey',function(data){
 		REDMINE_API_KEY = data.apikey;
 		if(REDMINE_API_KEY===undefined){
-			alert("Please update your Redmine API key and retry");
+			alert("Please update your RedMine API key and retry");
 		}else{
 			update();
 		}
@@ -81,16 +81,18 @@ function renderMapppings(){
 		
 		
 		
-		var html="<table><tr><th>You Track Entry</th><th>Redmine Entry</th></tr>";
+		var html="<table cellspacing=0; cellpadding=0;><tr><th>YouTrack Entry</th><th>Redmine Entry</th></tr>";
 		var trackermap = getTrackersAsMap();
 		for(var map in mappings){
 			html+="<tr><td>"+map+"</td><td>"+trackermap[mappings[map]]+"</td></tr>";
 		}
 		html+="</table>";
-		html+="<p>Select New Mapping or Update Existing</p>";
+		html+="<p class='subtitle'>Add a New Mapping or Update Existing Mappings</p>";
+		html+="<span class='padding-x'>YouTrack</span>";
 		html+="<select id='youtrackitem'>";
 		html+=getyouTrackWorkItemAsOptions();
 		html+="</select>";
+		html+="<span class='padding-x'>RedMine</span>";
 		html+="<select id='redmineitem'>";
 		html+=getTrackersAsOptions();
 		html+="</select>";

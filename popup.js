@@ -25,12 +25,12 @@ function renderErrorOnTopBar(errormessage){
 
 chrome.storage.sync.get('apikey',function(data){
 	REDMINE_API_KEY = data.apikey;
-	if(REDMINE_API_KEY===undefined) renderErrorOnTopBar("Without the API key redmine entries won't be shown");
+	if(REDMINE_API_KEY===undefined) renderErrorOnTopBar("RedMine entries will not be displayed without the API key.");
 });
 
 chrome.storage.sync.get('maps',function(data){
 		mappings = data.maps;
-		if(mappings ===undefined) renderErrorOnTopBar("Mappings not found ");
+		if(mappings ===undefined) renderErrorOnTopBar("Mappings not found.");
 });
 
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -80,7 +80,7 @@ function getIssueIdFromUrl(url){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
 	  var html = "<p><table cellspacing=0; cellpadding=0;>";
-	  html+="<tr><th >Date</th><th>Hours</th><th>Tracker</th><th>Sync</th>";
+	  html+="<tr><th >Date</th><th>Hours</th><th>Tracker</th><th>Send to RedMine</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
 		for(var   workitem of workitems){
@@ -106,7 +106,7 @@ function getIssueIdFromUrl(url){
 			
 			
 			
-			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync' >></button></tr>"
+			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync refresh'><i class='fa fa-refresh'></i></button></tr>"
 			
 		}
 		
@@ -186,7 +186,7 @@ function getIssueIdFromUrl(url){
   //this function is to render the title part of the redmine informations
   function renderRedmineInfo(redmineinfo){
 	  redmineinfoId = redmineinfo.id;
-	  var html = "<a href='"+redmineinfo.url+"'>"+redmineinfo.title + " ("+redmineinfo.id+")</a></br>";
+	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link icon'></i>"+redmineinfo.title + " ("+redmineinfo.id+")</a></br>";
 	  document.getElementById('redmineinfo').innerHTML = html;
   }
   function renderRedmineInfoError(){
