@@ -1,6 +1,6 @@
 {
 	"name":"ZynK | Kronos FMSI",
-    	"version": "1.0",
+    	"version": "1.0.0.1",
         "description": "Sync YouTrack Time Tracks to RedMine",
 	"permissions":["activeTab","declarativeContent","storage","tabs","https://track.zone24x7.lk/","http://dev-app.us.kronos.com:81/"],
 	"background":{

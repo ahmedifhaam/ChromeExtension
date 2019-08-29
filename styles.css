@@ -24,12 +24,13 @@ th {
 }
 .name{
     float: right;
-    color: #be0116;
+    color: #ec750a;
 }
 .text{
     vertical-align: middle;
     font-size: 13px;
     margin-right: 10px;
+    font-weight: 800;
 }
 .padding-x{
     padding: 0 10px;
