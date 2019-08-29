@@ -217,12 +217,19 @@ var youtrackcounter = 1;
   //this function is to render the title part of the redmine informations
   function renderRedmineInfo(redmineinfo){
 	  redmineinfoId = redmineinfo.id;
-	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link fa-sm icon'></i>";
+		var html = "<i class='fa fa-link fa-sm icon' id='redmineissuelink'></i>";
 	  document.getElementById('linkToRedMine').innerHTML = html;
+	  $("#redmineissuelink").click(function(){
+		  launchLink(redmineinfo.url);
+	  })
   }
   function renderRedmineInfoError(){
 	  var html = "<h3>Please Contact Authorized person for creating a related issue in Redmine</h3>";
 	  document.getElementById('redmineinfo').innerHTML = html;
+  }
+
+  function launchLink(href){
+	chrome.tabs.create({url: href});
   }
   
   
