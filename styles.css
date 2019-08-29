@@ -142,6 +142,8 @@ th {
 }
 .trackerselect{
     border:none;
+    font-family: 'Open Sans', Roboto, Calibri, 'sans-serif';
+    font-size: 12px;
 }
 
 #tp tr:hover {

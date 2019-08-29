@@ -101,7 +101,7 @@ function getIssueIdFromUrl(url){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
 	  var html = "<p><table cellspacing=0; cellpadding=0;>";
-	  html+="<tr><th >Date</th><th>Hours</th><th>Work Item</th><th>Tracker</th><th>Send to RedMine</th>";
+	  html+="<tr><th >Date</th><th>Hours</th><th>Work Item (YT)</th><th>Tracker (RM)</th><th>Update RedMine</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
 		for(var   workitem of workitems){
@@ -128,7 +128,7 @@ function getIssueIdFromUrl(url){
 			
 			
 			
-			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync refresh'><i class='fa fa-refresh'></i></button></tr>"
+			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td style='text-align:center;'><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync refresh'><i class='fa fa-refresh'></i></button></tr>"
 			
 		}
 		
