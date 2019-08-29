@@ -190,8 +190,7 @@ th {
     color: #515151;
     list-style-type: none;
     background-image: linear-gradient(to right, white , #ffeef0, white);
-    /* padding: 10px; */
     z-index: 100;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     box-shadow: 1px 2px 2px lightgrey;
 }
