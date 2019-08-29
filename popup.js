@@ -102,7 +102,7 @@ function getIssueIdFromUrl(url){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
 	  var html = "<table cellspacing=0; cellpadding=0;>";
-	  html+="<tr><th >Date</th><th>Hours</th><th>Work Item (YT)</th><th>Tracker (RM)</th><th>Update RedMine</th>";
+	  html+="<tr><th >Date</th><th>Hours</th><th>Tracker (YT)</th><th>Tracker (RM)</th><th>Update RedMine</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
 		for(var   workitem of workitems){
@@ -129,7 +129,7 @@ function getIssueIdFromUrl(url){
 			
 			
 			
-			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td style='text-align:center;'><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync refresh'><i class='fa fa-refresh'></i></button></tr>"
+			html+="<td><select class='trackerselect' >"+getTrackersAsOptions(mappings[value])+"</select></td><td style='text-align:center;'><button btnbody="+encodeURIComponent(JSON.stringify(body))+" class='btnsync refresh' title='Send the update to RedMine'><i class='fa fa-refresh'></i></button></tr>"
 			
 		}
 		
@@ -235,7 +235,7 @@ var youtrackcounter = 1;
   
   function renderredmineTimeEntries(redmineTimeEntries){
 	  var totalHours = 0;
-	var html = "<table cellspacing=0; cellpadding=0;><tr><th>User</th><th>Hours</th><th>Date</th><th>Tracker</th><tr>";
+	var html = "<table cellspacing=0; cellpadding=0;><tr><th>User</th><th>Hours</th><th>Date</th><th>Tracker (RM)</th><tr>";
 	for(var timeEntry of redmineTimeEntries.time_entries){
 		html+="<tr><td>"+timeEntry.user.name+"</td>";
 		html+="<td>"+timeEntry.hours+" h</td>";
