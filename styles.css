@@ -26,7 +26,9 @@ th {
 .padding-x{
     padding: 0 10px;
 }
-
+.margin{
+    margin: 10px 0;
+}
 .options-body div, .padding{
     padding: 10px;
 }
@@ -89,6 +91,7 @@ input:-webkit-autofill:active   {
     font-size: 14px;
     font-weight: 600;
     color: #000;
+    padding-bottom: 0;
 }
 
 .options-title{

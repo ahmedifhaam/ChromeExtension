@@ -88,6 +88,7 @@ function getIssueIdFromUrl(url){
 		}
 		if(this.readyState ==4 && this.status ==401){
 			console.log("Not Authenticated");
+			renderErrorOnTopBar("Please refresh you track page and try again");
 		}
 	  };
 	
@@ -100,7 +101,7 @@ function getIssueIdFromUrl(url){
   function renderWorkItems(workitems){
 	  var totalhours = 0;
 	  workitems = JSON.parse(workitems);
-	  var html = "<p><table cellspacing=0; cellpadding=0;>";
+	  var html = "<table cellspacing=0; cellpadding=0;>";
 	  html+="<tr><th >Date</th><th>Hours</th><th>Work Item (YT)</th><th>Tracker (RM)</th><th>Update RedMine</th>";
 	  //alert(workitems.length);
 	  //for(workitem in workitems){
@@ -134,7 +135,7 @@ function getIssueIdFromUrl(url){
 		
 	  }
 	  //html+="<tr><td colspan=2>Total</td><td colspan=2>"+totalhours+"h</td></tr></table></p>";
-	  html+="</table></p>";
+	  html+="</table>";
 	  $("#totalHours").text(totalhours+" h");
 	  document.getElementById('tp').innerHTML = html;
 	  for (var element of document.getElementsByClassName('btnsync')){
@@ -176,7 +177,7 @@ var youtrackcounter = 1;
 				renderRedmineInfo(resultObj.results[0]);
 				gettimeentryInfoFromRedmine(resultObj.results[0].id);
 			}else{
-				renderRedmineInfoError();
+				renderErrorOnTopBar("Please Contact Authorized person for creating a related issue in Redmine");
 			}
 			
 		}
