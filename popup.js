@@ -50,7 +50,7 @@ function loaddata(){
 		document.getElementById('issue_title').innerHTML = "<h3 style='display:inline'>"+issueId+"</h2>";
 		GetAllTrackers(function(){
 		  AssignUser(function(){
-			  document.getElementById('issue_title').innerHTML+="<img style='width:25px;height:25px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'>";
+			  document.getElementById('issue_title').innerHTML+="<span class='name'><span class='text'>ZynK | Kronos FMSI &nbsp;&nbsp;</span> <img style='width:25px;height:25px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'></span>";
 			  getWorkItemsForIssue(issueId);
 			  getredmineissueIdforYouTrackissue(issueId);
 		  });
@@ -88,7 +88,7 @@ function getIssueIdFromUrl(url){
 		}
 		if(this.readyState ==4 && this.status ==401){
 			console.log("Not Authenticated");
-			renderErrorOnTopBar("Please refresh you track page and try again");
+			renderErrorOnTopBar("Please refresh YouTrack page and try again!");
 		}
 	  };
 	
@@ -177,7 +177,7 @@ var youtrackcounter = 1;
 				renderRedmineInfo(resultObj.results[0]);
 				gettimeentryInfoFromRedmine(resultObj.results[0].id);
 			}else{
-				renderErrorOnTopBar("Please Contact Authorized person for creating a related issue in Redmine");
+				renderErrorOnTopBar("Please contact an authorized person to get a related issue created in RedMine.");
 			}
 			
 		}
@@ -224,7 +224,7 @@ var youtrackcounter = 1;
 	  })
   }
   function renderRedmineInfoError(){
-	  var html = "<h3>Please Contact Authorized person for creating a related issue in Redmine</h3>";
+	  var html = "<h3>Please contact an authorized person to get a related issue created in RedMine.</h3>";
 	  document.getElementById('redmineinfo').innerHTML = html;
   }
 

@@ -28,7 +28,7 @@ function getAPIKey(){
 	chrome.storage.sync.get('apikey',function(data){
 		REDMINE_API_KEY = data.apikey;
 		if(REDMINE_API_KEY===undefined){
-			alert("Please update your RedMine API key and retry");
+			alert("Please update your RedMine API key and retry.");
 		}else{
 			update();
 		}
@@ -55,7 +55,7 @@ function constructOptions() {
 		var key = api_key_txt.value;
 		chrome.storage.sync.set({apikey:key},function(){
 			REDMINE_API_KEY=api_key_txt.value;
-			alert("Update API KEY as "+key);
+			alert("Update API KEY as "+key+" ?");
 			update();	
 		});
 	});
@@ -97,7 +97,7 @@ function renderMapppings(){
 		html+="<select id='redmineitem'>";
 		html+=getTrackersAsOptions();
 		html+="</select>";
-		html+="<button id='updatebtn'>Add/Update</button>";
+		html+="<button id='updatebtn'>Save</button>";
 		
 		mappinsDV.innerHTML = html;
 		document.getElementById('updatebtn').addEventListener('click',addnewMapAndSync);
@@ -186,7 +186,7 @@ function GetAllRedmineTrackers(){
 			GetAllYouTrackTrackers();
 			
 		}else if(this.status ==401){
-			alert("Please Login ");
+			alert("Please Login to YouTrack!");
 		}
 	  };
 	

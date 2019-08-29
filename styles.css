@@ -22,7 +22,15 @@ th {
     border: 1px solid #ddd;
     padding: 8px;
 }
-
+.name{
+    float: right;
+    color: #be0116;
+}
+.text{
+    vertical-align: middle;
+    font-size: 13px;
+    margin-right: 10px;
+}
 .padding-x{
     padding: 0 10px;
 }
@@ -51,7 +59,7 @@ input:-webkit-autofill:active   {
   
 }
 
-.options-body #btnUpdateApiKey, .options-body #updatebtn{
+.options-body #btnUpdateApiKey, .options-body #updatebtn, .options-body #btnReset{
     float: right;
     height: 34px;
     width: 100px;
@@ -59,12 +67,13 @@ input:-webkit-autofill:active   {
 
 .options-body button{
     border: none;
-    background-color: #cdf0ff;
+    background-color: #eeeeee;
     font-family: 'Open Sans', Roboto, Calibri, 'sans-serif';
+    font-weight: 600;
 }
 
 .options-body button:hover{
-    background-color: #025b81;
+    background-color: #000;
     color: white;
     cursor: pointer;
 }
@@ -77,26 +86,32 @@ input:-webkit-autofill:active   {
     height: 34px;
 }
 
+.options-body hr{
+    border-color: #be0116;
+}
+#mappings{
+    margin-bottom: 25px;
+}
 #mappings table{
     width: 100%;
 }
 
 #mappings table th, .subtitle{
     background-color: white;
-    color: #138bbd;
-    font-size: 13px;
+    color: #363636;
+    font-size: 14px;
 }
 
 .title{
     font-size: 14px;
     font-weight: 600;
     color: #000;
-    padding-bottom: 0;
+    padding-bottom: 5px;
 }
 
 .options-title{
     font-size: 14px;
-    background: #138bbd;
+    background: #be0116;
     color: white;
     font-weight: 600;
 }
@@ -168,13 +183,15 @@ th {
 }
 
 .message{
-    width: 80%;
     margin: auto;
     text-align: center;
     font-size: 14px;
-    padding: 0;
     font-weight: 600;
-    color: #065499;
+    color: #515151;
     list-style-type: none;
-    background-image: linear-gradient(to right, white , #cfe8ff, white);
+    background-image: linear-gradient(to right, white , #ffeef0, white);
+    /* padding: 10px; */
+    z-index: 100;
+    margin-bottom: 7px;
+    box-shadow: 1px 2px 2px lightgrey;
 }
