@@ -50,7 +50,7 @@ function loaddata(){
 		document.getElementById('issue_title').innerHTML = "<h3 style='display:inline'>"+issueId+"</h2>";
 		GetAllTrackers(function(){
 		  AssignUser(function(){
-			  document.getElementById('issue_title').innerHTML+="<img style='width:32px;height:32px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'>";
+			  document.getElementById('issue_title').innerHTML+="<img style='width:25px;height:25px;float:right' src='http://dev-app.us.kronos.com:81"+user.avatarUrl+"'>";
 			  getWorkItemsForIssue(issueId);
 			  getredmineissueIdforYouTrackissue(issueId);
 		  });
@@ -216,8 +216,8 @@ var youtrackcounter = 1;
   //this function is to render the title part of the redmine informations
   function renderRedmineInfo(redmineinfo){
 	  redmineinfoId = redmineinfo.id;
-	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link icon'></i>"+"Open RedmineItem ("+redmineinfo.id+")</a></br>";
-	  document.getElementById('redmineinfo').innerHTML = html;
+	  var html = "<a href='"+redmineinfo.url+"'><i class='fa fa-link fa-sm icon'></i>";
+	  document.getElementById('linkToRedMine').innerHTML = html;
   }
   function renderRedmineInfoError(){
 	  var html = "<h3>Please Contact Authorized person for creating a related issue in Redmine</h3>";

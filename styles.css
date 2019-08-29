@@ -99,6 +99,8 @@ input:-webkit-autofill:active   {
 }
 #issue_title {
     font-size: 16px;
+    background: #000;
+    color: #ffffff;
 }
 
 #tp table,
@@ -124,11 +126,12 @@ button {
 }
 .total{
     padding: 0 10px;
-    color: #138bbd;
+    color: #000;
 }
 .icon{
     padding-right: 7px;
     cursor: pointer;
+    color: #be0116;
 }
 tr {
     border-bottom: 1px solid #113388;
@@ -147,14 +150,16 @@ th {
 }
 
 #tp tr:hover {
-    background-color: #bbe4ff;
+    /* background-color: #bbe4ff; */
+    background-color: #eeeeee;
 }
 
 th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #138bbd;
+    /* background-color: #138bbd; */
+    background-color: #be0116;
     color: white;
     font-weight: 500;
 }

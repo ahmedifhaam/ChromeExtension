@@ -1,7 +1,7 @@
 {
 	"name":"ZynK | Kronos FMSI",
     	"version": "1.0",
-        "description": "YouTrack to RedMine",
+        "description": "Sync YouTrack Time Tracks to RedMine",
 	"permissions":["activeTab","declarativeContent","storage","tabs","https://track.zone24x7.lk/","http://dev-app.us.kronos.com:81/"],
 	"background":{
 		"scripts": ["libs/jquery-3.4.1.min.js","background.js"],
@@ -11,17 +11,17 @@
 	"page_action":{
 		"default_popup":"popup.html",
 		"default_icon": {
-        "16": "images/icon.png",
-        "32": "images/icon.png",
-        "48": "images/icon.png",
-        "128": "images/icon.png"
+        "16": "images/zone.png",
+        "32": "images/zone.png",
+        "48": "images/zone.png",
+        "128": "images/zone.png"
       }
     },
     "icons": {
-      "16": "images/icon.png",
-      "32": "images/icon.png",
-      "48": "images/icon.png",
-      "128": "images/icon.png"
+      "16": "images/zone.png",
+      "32": "images/zone.png",
+      "48": "images/zone.png",
+      "128": "images/zone.png"
     },
 	"manifest_version": 2
 
